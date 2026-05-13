@@ -29,4 +29,11 @@ public final class StringUtils {
     }
 
     // TODO (Даалгавар 2): public static String reverse(String s) { ... }
+    public static String reverse(String input) {
+        if (input == null) {
+            return null;
+        }
+
+        return new StringBuilder(input).reverse().toString();
+    }
 }
