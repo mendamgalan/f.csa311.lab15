@@ -41,6 +41,68 @@
               TODO (Даалгавар 5): JaCoCo plugin-г нэмэх.
               Lab15 заавар (Даалгавар 5)-ыг харна уу.
             -->
+            <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.2.5</version>
+        </plugin>
+
+        <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.12</version>
+
+            <executions>
+
+                <!-- coverage collect -->
+                <execution>
+                    <goals>
+                        <goal>prepare-agent</goal>
+                    </goals>
+                </execution>
+
+                <!-- html report generate -->
+                <execution>
+                    <id>report</id>
+                    <phase>verify</phase>
+
+                    <goals>
+                        <goal>report</goal>
+                    </goals>
+                </execution>
+
+                <!-- quality gate -->
+                <execution>
+                    <id>check</id>
+                    <phase>verify</phase>
+
+                    <goals>
+                        <goal>check</goal>
+                    </goals>
+
+                    <configuration>
+                        <rules>
+
+                            <rule>
+                                <element>BUNDLE</element>
+
+                                <limits>
+                                    <limit>
+                                        <counter>LINE</counter>
+                                        <value>COVEREDRATIO</value>
+                                        <minimum>0.70</minimum>
+                                    </limit>
+                                </limits>
+
+                            </rule>
+
+                        </rules>
+                    </configuration>
+
+                </execution>
+
+            </executions>
+        </plugin>
         </plugins>
     </build>
 </project>

@@ -27,3 +27,11 @@ jobs:
 
       - name: Run tests
         run: mvn -B verify
+
+      # ADDED THIS BLOCK
+      - name: Upload JaCoCo report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jacoco-${{ matrix.java }}
+          path: target/site/jacoco/
